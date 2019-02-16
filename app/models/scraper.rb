@@ -1,4 +1,5 @@
 class Scraper
+  # This class will be significantly more complex in the real app. Proxies, Queueing, proper UA/IP handling etc.
 
   USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36",
@@ -21,7 +22,7 @@ class Scraper
     agent
   end
 
-  def self.get_page(url)
+  def self.fetch(url)
     agent.get(url)
   end
 end
