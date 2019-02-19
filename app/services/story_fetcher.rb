@@ -4,7 +4,7 @@ class StoryFetcher < ApplicationService
   end
 
   def call
-    Strategy.for(@story_url).get_story_info
+    Strategy.for(@story_url).get_story
   end
 
 end

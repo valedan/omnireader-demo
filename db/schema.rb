@@ -10,16 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_28_205623) do
+ActiveRecord::Schema.define(version: 2019_02_19_224156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "strategies", force: :cascade do |t|
-    t.string "domains", array: true
-    t.json "targets"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "chapters", force: :cascade do |t|
+    t.bigint "story_id"
+    t.text "title"
+    t.text "url"
+    t.integer "progess"
+    t.index ["story_id"], name: "index_chapters_on_story_id"
+  end
+
+  create_table "stories", force: :cascade do |t|
+    t.text "canonical_url"
+    t.json "details"
   end
 
 end

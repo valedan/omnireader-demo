@@ -4,21 +4,13 @@ describe FFNStrategy, type: :strategy do
   let(:story_url) {'https://www.fanfiction.net/s/5782108/1/Harry-Potter-and-the-Methods-of-Rationality'}
   let(:story_page) {file_fixture('external_web_pages/ffn_hpmor.html').read}
 
-
-
-  context 'when page cannot be loaded' do
-    it 'logs error to Rollbar'
-    it 'retries several times'
-    it 'eventually raises error'
-  end
-
-  context "when page can be loaded" do
+  describe "#get_story" do
     before do
       @page_stub = stub_request(:get, story_url)
                     .to_return(body: story_page, headers: {'Content-Type' => 'text/html; charset=UTF-8'})
       @result = StoryFetcher.call(story_url)
     end
-
+  
     it 'retrieves the url provided' do
       expect(@page_stub).to have_been_requested
     end
@@ -45,5 +37,25 @@ describe FFNStrategy, type: :strategy do
         ]
       })
     end
-  end  
+  end
+
+  describe "#get_chapter" do
+    before do
+      @page_stub = stub_request(:get, story_url)
+                    .to_return(body: story_page, headers: {'Content-Type' => 'text/html; charset=UTF-8'})
+      @result = ChapterFetcher.call(story_url)
+    end
+  
+    it 'retrieves the url provided' do
+      expect(@page_stub).to have_been_requested
+    end
+  
+    it 'parses the page based on target data and returns json data' do
+      expect(@result).to eq({
+        content: Nokogiri::HTML(story_page).at_css('#storytext').text
+      })
+    end
+  end
+
+  
 end
