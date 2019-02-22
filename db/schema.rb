@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2019_02_19_224156) do
     t.bigint "story_id"
     t.text "title"
     t.text "url"
+    t.integer "number"
     t.integer "progess"
     t.index ["story_id"], name: "index_chapters_on_story_id"
   end

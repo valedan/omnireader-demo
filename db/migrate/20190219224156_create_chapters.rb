@@ -4,6 +4,7 @@ class CreateChapters < ActiveRecord::Migration[5.2]
       t.belongs_to :story, index: true
       t.text :title
       t.text :url
+      t.integer :number
       t.integer :progess
     end
   end
