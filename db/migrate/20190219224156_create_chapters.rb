@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateChapters < ActiveRecord::Migration[5.2]
   def change
     create_table :chapters do |t|
@@ -5,7 +7,7 @@ class CreateChapters < ActiveRecord::Migration[5.2]
       t.text :title
       t.text :url
       t.integer :number
-      t.integer :progess
+      t.integer :progress
     end
   end
 end

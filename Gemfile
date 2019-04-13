@@ -1,16 +1,20 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.0'
+ruby '2.6.2'
 
-gem 'rails', '~> 5.2.2'
+gem 'fast_jsonapi'
+gem 'mechanize'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
-gem 'jbuilder', '~> 2.5'
-gem 'mechanize'
+gem 'rails', '~> 5.2.2'
 
 group :development, :test do
   gem 'byebug'
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec', require: false
 end
 
 group :development do
@@ -20,8 +24,8 @@ group :development do
 end
 
 group :test do
-  gem 'rspec-rails'
-  gem 'webmock'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'rspec-rails'
+  gem 'webmock'
 end

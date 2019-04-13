@@ -1,12 +1,17 @@
-require "rails_helper"
+# frozen_string_literal: true
 
-describe "Chapter Endpoints", type: :request do
-  describe "GET Chapter" do
-    it "fetches chapter content from url"
-    it "returns chapter content and details"
+require 'rails_helper'
+
+describe 'Chapter Endpoints', type: :request do
+  context 'bad name' do
   end
 
-  describe "PUT Chapter" do
-    it "updates chapter progress"
+  describe 'GET Chapter' do
+    it 'fetches chapter content from url'
+    it 'returns chapter content and details'
+  end
+
+  describe 'PUT Chapter' do
+    it 'updates chapter progress'
   end
 end

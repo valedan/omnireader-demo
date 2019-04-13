@@ -1,0 +1,5 @@
+RSpec/AlignLeftLetBrace:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 100
