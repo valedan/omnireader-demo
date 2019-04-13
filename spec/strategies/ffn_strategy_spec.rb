@@ -19,14 +19,16 @@ describe FFNStrategy, type: :strategy do
 
     it 'parses the page based on target data and returns json data' do
       expect(@result).to eq(
-        story_title: 'Harry Potter and the Methods of Rationality',
-        author_name: 'Less Wrong',
-        details: {
-          story_description: 'Petunia married a biochemist, and Harry grew up reading science and science fiction. Then came the Hogwarts letter, and a world of intriguing new possibilities to exploit. And new friends, like Hermione Granger, and Professor McGonagall, and Professor Quirrell... COMPLETE.',
-          story_information: 'Rated: Fiction T - English - Drama/Humor - Harry P., Hermione G. - Chapters: 122 - Words: 661,619 - Reviews: 34,596 - Favs: 23,879 - Follows: 17,999 - Updated: 3/14/2015 - Published: 2/28/2010 - Status: Complete - id: 5782108'
+        story: {
+          title: 'Harry Potter and the Methods of Rationality',
+          author: 'Less Wrong',
+          details: {
+            story_description: 'Petunia married a biochemist, and Harry grew up reading science and science fiction. Then came the Hogwarts letter, and a world of intriguing new possibilities to exploit. And new friends, like Hermione Granger, and Professor McGonagall, and Professor Quirrell... COMPLETE.',
+            story_information: 'Rated: Fiction T - English - Drama/Humor - Harry P., Hermione G. - Chapters: 122 - Words: 661,619 - Reviews: 34,596 - Favs: 23,879 - Follows: 17,999 - Updated: 3/14/2015 - Published: 2/28/2010 - Status: Complete - id: 5782108'
+          }
         },
 
-        chapter_list: [
+        chapters: [
           {
             title: '1. A Day of Very Low Probability',
             url: 'https://www.fanfiction.net/s/5782108/1/Harry-Potter-and-the-Methods-of-Rationality'

@@ -17,13 +17,16 @@ class FFNStrategy < Strategy
 
   def parse_story
     {
-      story_title: @page.at_css('#profile_top .xcontrast_txt').text.strip,
-      author_name: @page.xpath("//a[starts-with(@href, '/u/')]").first.text.strip,
-      details: {
-        story_description: @page.at_css('#profile_top div.xcontrast_txt').text,
-        story_information: @page.at_css('#profile_top span.xgray.xcontrast_txt').text.gsub(/\s{2,}/, ' ').strip
+      story: {
+        title: @page.at_css('#profile_top .xcontrast_txt').text.strip,
+        author: @page.xpath("//a[starts-with(@href, '/u/')]").first.text.strip,
+        details: {
+          story_description: @page.at_css('#profile_top div.xcontrast_txt').text,
+          story_information: @page.at_css('#profile_top span.xgray.xcontrast_txt').text.gsub(/\s{2,}/, ' ').strip
+        }
       },
-      chapter_list: parse_chapter_list
+
+      chapters: parse_chapter_list
     }
   end
 
