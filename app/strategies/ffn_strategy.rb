@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class FFNStrategy < Strategy
-  register_for %r{(fictionpress\.com|fanfiction\.net)/s/\d+/}
-
   def get_story
     @page = Scraper.fetch(@url)
     parse_story

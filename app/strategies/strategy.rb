@@ -1,17 +1,16 @@
 # frozen_string_literal: true
 
 class Strategy
+  REGISTRY = {
+    FFNStrategy: %r{(fictionpress\.com|fanfiction\.net)/s/\d+/}
+  }.freeze
+
   def initialize(url)
     @url = url
   end
 
-  @@registrations = []
-
-  def self.register_for(pattern)
-    @@registrations << { strategy: name, pattern: pattern }
-  end
-
   def self.for(url)
-    @@registrations.find { |registration| registration[:pattern].match?(url) }[:strategy].constantize.new(url)
+    match = REGISTRY.find { |_klass, pattern| pattern.match?(url) }
+    match ? match.first.to_s.constantize.new(url) : nil
   end
 end
