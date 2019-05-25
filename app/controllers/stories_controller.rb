@@ -18,7 +18,7 @@ class StoriesController < ApplicationController
       story_data = StoryFetcher.call(params[:story_url])
       @story = Story.create!(story_data[:story])
       story_data[:chapters].each { |chapter| Chapter.create!(**chapter, story: @story) }
-      render json: StorySerializer.new(@story).serializable_hash
+      render json: StorySerializer.new(@story, { include: [:chapters] }).serializable_hash
     else
       render status: :unprocessable_entity
     end

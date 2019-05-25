@@ -30,7 +30,7 @@ class FFNStrategy < Strategy
 
   def parse_chapter
     {
-      content: @page.at_css('#storytext').text
+      content: @page.at_css('#storytext').to_s
     }
   end
 

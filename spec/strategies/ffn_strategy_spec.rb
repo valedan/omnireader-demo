@@ -59,7 +59,7 @@ describe FFNStrategy, type: :strategy do
 
     it 'parses the page based on target data and returns json data' do
       expect(@result).to eq(
-        content: Nokogiri::HTML(story_page).at_css('#storytext').text
+        content: Nokogiri::HTML(story_page).at_css('#storytext').to_s
       )
     end
   end

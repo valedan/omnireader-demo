@@ -15,7 +15,7 @@ describe 'Chapter Endpoints', type: :request do
       end
 
       before do
-        get "/stories/#{story.id}/chapters/#{target_chapter.id}"
+        get "/chapters/#{target_chapter.id}"
       end
 
       it 'returns a 200' do
@@ -29,15 +29,13 @@ describe 'Chapter Endpoints', type: :request do
       it 'returns serialized chapter including content' do
         expect(json_response.data.attributes.title).to eq target_chapter.title
         expect(json_response.data.attributes.content)
-          .to eq Nokogiri::HTML(page).at_css('#storytext').text
+          .to eq Nokogiri::HTML(page).at_css('#storytext').to_s
       end
     end
 
     context 'When chapter does not exist' do
-      let!(:story) { create(:story) }
-
       before do
-        get "/stories/#{story.id}/chapters/100"
+        get '/chapters/100'
       end
 
       it 'returns a 404' do
@@ -56,7 +54,7 @@ describe 'Chapter Endpoints', type: :request do
         let(:allowed_params) { { attributes: { progress: new_progress } } }
 
         before do
-          patch "/stories/#{story.id}/chapters/#{target_chapter.id}", params: allowed_params
+          patch "/chapters/#{target_chapter.id}", params: allowed_params
         end
 
         it 'updates the chapter' do
@@ -77,7 +75,7 @@ describe 'Chapter Endpoints', type: :request do
         let(:original_title)   { target_chapter.title }
 
         before do
-          patch "/stories/#{story.id}/chapters/#{target_chapter.id}", params: forbidden_params
+          patch "/chapters/#{target_chapter.id}", params: forbidden_params
         end
 
         it 'does not update the chapter' do
@@ -96,10 +94,8 @@ describe 'Chapter Endpoints', type: :request do
     end
 
     context 'When chapter does not exist' do
-      let!(:story) { create(:story) }
-
       before do
-        get "/stories/#{story.id}/chapters/100"
+        get '/chapters/100'
       end
 
       it 'returns a 404' do
